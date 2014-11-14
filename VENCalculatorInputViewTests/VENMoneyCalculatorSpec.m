@@ -74,6 +74,9 @@ describe(@"Evaluate expressions", ^{
         expect([moneyCalculator evaluateExpression:@".95"]).to.equal(@"0.95");
     });
 
+    it(@"should handle duble negatives", ^{
+        expect([moneyCalculator evaluateExpression:@"0--4"]).to.equal(@"4");
+    });
 });
 
 

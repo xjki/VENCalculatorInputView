@@ -113,8 +113,16 @@
     [self endEditing:YES];
 }
 
-- (void)calculatorInputViewDidTapClear:(VENCalculatorInputView *)calculatorInputView {
-    self.text = @"";
+- (void)calculatorInputViewDidTapChangeSign:(VENCalculatorInputView *)calculatorInputView {
+    NSLog(@"+/-");
+    NSString *textToEvaluate = [self trimExpressionString:self.text];
+    NSString *evaluatedString = [self.moneyCalculator evaluateExpression:textToEvaluate];
+    if (evaluatedString) {
+        NSString *negativeString = [self.moneyCalculator evaluateExpression:[NSString stringWithFormat:@"0−%@", evaluatedString]];
+        if (negativeString) {
+            self.text = negativeString;
+        }
+    }
 }
 
 

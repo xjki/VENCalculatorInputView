@@ -76,10 +76,10 @@
     }
 }
 
-- (IBAction)userDidTapClear:(UIButton *)sender {
+- (IBAction)userDidTapChangeSign:(UIButton *)sender {
     [[UIDevice currentDevice] playInputClick];
-    if ([self.delegate respondsToSelector:@selector(calculatorInputViewDidTapClear:)]) {
-        [self.delegate calculatorInputViewDidTapClear:self];
+    if ([self.delegate respondsToSelector:@selector(calculatorInputViewDidTapChangeSign:)]) {
+        [self.delegate calculatorInputViewDidTapChangeSign:self];
     }
 }
 

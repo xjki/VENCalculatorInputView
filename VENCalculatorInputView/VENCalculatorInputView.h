@@ -7,7 +7,7 @@
 - (void)calculatorInputView:(VENCalculatorInputView *)inputView didTapKey:(NSString *)key;
 - (void)calculatorInputViewDidTapBackspace:(VENCalculatorInputView *)calculatorInputView;
 - (void)calculatorInputViewDidTapEquals:(VENCalculatorInputView *)calculatorInputView;
-- (void)calculatorInputViewDidTapClear:(VENCalculatorInputView *)calculatorInputView;
+- (void)calculatorInputViewDidTapChangeSign:(VENCalculatorInputView *)calculatorInputView;
 
 @end
 
