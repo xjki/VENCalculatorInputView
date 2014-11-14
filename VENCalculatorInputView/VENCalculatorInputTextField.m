@@ -114,13 +114,15 @@
 }
 
 - (void)calculatorInputViewDidTapChangeSign:(VENCalculatorInputView *)calculatorInputView {
-    NSLog(@"+/-");
     NSString *textToEvaluate = [self trimExpressionString:self.text];
     NSString *evaluatedString = [self.moneyCalculator evaluateExpression:textToEvaluate];
     if (evaluatedString) {
-        NSString *negativeString = [self.moneyCalculator evaluateExpression:[NSString stringWithFormat:@"0−%@", evaluatedString]];
-        if (negativeString) {
-            self.text = negativeString;
+        NSString *firstCharacter = [self.text substringToIndex:1];
+        if ([firstCharacter isEqualToString:@"-"] || [firstCharacter isEqualToString:@"−"]) {
+            self.text = [self.text substringFromIndex:1];
+        }
+        else {
+            self.text = [NSString stringWithFormat:@"-%@", evaluatedString];
         }
     }
 }
@@ -139,8 +141,7 @@
         if ([lastCharacterString isEqualToString:@"+"] ||
             [lastCharacterString isEqualToString:@"−"] ||
             [lastCharacterString isEqualToString:@"×"] ||
-            [lastCharacterString isEqualToString:@"÷"] ||
-            [lastCharacterString isEqualToString:[self decimalSeparator]]) {
+            [lastCharacterString isEqualToString:@"÷"]) {
             return [self.text substringToIndex:self.text.length - 1];
         }
     }
