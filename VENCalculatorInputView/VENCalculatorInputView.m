@@ -5,6 +5,7 @@
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *numberButtonCollection;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *operationButtonCollection;
 @property (strong, nonatomic) IBOutlet UIButton *decimalButton;
+@property (strong, nonatomic) IBOutlet UIButton *backspaceButton;
 
 @end
 
@@ -57,7 +58,58 @@
     for (UIButton *operationButton in self.operationButtonCollection) {
         [self setupButton:operationButton];
     }
+    [self.backspaceButton setImage:[self backspaceImage] forState:UIControlStateNormal];
 }
+
+- (UIImage *) backspaceImage {
+    // set up a graphics context of image size
+    CGRect frame = CGRectMake(0, 0, 22, 15);
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(frame.size.width, frame.size.height), NO, 0);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    //// Bezier 2 Drawing
+    CGContextSaveGState(context);
+    CGContextTranslateCTM(context, 0.0f, 0.0f);
+    CGContextScaleCTM(context, 1.0f, 1.0f);
+
+    //// Bezier Drawing
+    UIBezierPath* bezierPath = UIBezierPath.bezierPath;
+    [bezierPath moveToPoint: CGPointMake(0.5, 7.5)];
+    [bezierPath addLineToPoint: CGPointMake(7.5, 0.5)];
+    [bezierPath addLineToPoint: CGPointMake(20.5, 0.5)];
+    [bezierPath addLineToPoint: CGPointMake(21.5, 1.5)];
+    [bezierPath addLineToPoint: CGPointMake(21.5, 13.5)];
+    [bezierPath addLineToPoint: CGPointMake(20.5, 14.5)];
+    [bezierPath addLineToPoint: CGPointMake(7.5, 14.5)];
+    [bezierPath addLineToPoint: CGPointMake(0.5, 7.5)];
+    [bezierPath closePath];
+    [UIColor.blackColor setStroke];
+    bezierPath.lineWidth = 1;
+    [bezierPath stroke];
+    
+    //// Bezier 2 Drawing
+    UIBezierPath* bezier2Path = UIBezierPath.bezierPath;
+    [bezier2Path moveToPoint: CGPointMake(17.5, 3.5)];
+    [bezier2Path addCurveToPoint: CGPointMake(9.5, 11.5) controlPoint1: CGPointMake(9.5, 11.5) controlPoint2: CGPointMake(9.5, 11.5)];
+    [UIColor.blackColor setStroke];
+    bezier2Path.lineWidth = 1;
+    [bezier2Path stroke];
+    
+    
+    //// Bezier 3 Drawing
+    UIBezierPath* bezier3Path = UIBezierPath.bezierPath;
+    [bezier3Path moveToPoint: CGPointMake(17.5, 11.5)];
+    [bezier3Path addLineToPoint: CGPointMake(9.5, 3.5)];
+    [UIColor.blackColor setStroke];
+    bezier3Path.lineWidth = 1;
+    [bezier3Path stroke];
+    
+    CGContextRestoreGState(context);
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
 
 - (void)setLocale:(NSLocale *)locale {
     _locale = locale;

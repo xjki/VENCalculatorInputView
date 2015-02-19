@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -190,7 +190,7 @@
                     <rect key="frame" x="256" y="0.0" width="64" height="54"/>
                     <accessibility key="accessibilityConfiguration" label="Clear"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
-                    <state key="normal" image="VENCalculatorIconBackspace.png">
+                    <state key="normal">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -201,7 +201,7 @@
                     <rect key="frame" x="256" y="54" width="64" height="162"/>
                     <accessibility key="accessibilityConfiguration" label="Equals"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
-                    <state key="normal" title="=">
+                    <state key="normal" title="✓">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -292,6 +292,7 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="backspaceButton" destination="nEm-qn-8Il" id="MKi-Rd-gjE"/>
                 <outlet property="decimalButton" destination="eYd-gM-or0" id="Lng-xU-k41"/>
                 <outletCollection property="numberButtonCollection" destination="2Ty-om-JCT" id="YQr-Vb-a62"/>
                 <outletCollection property="operationButtonCollection" destination="WE3-xD-kgf" id="m1z-hQ-z5E"/>
@@ -314,9 +315,6 @@
             </connections>
         </view>
     </objects>
-    <resources>
-        <image name="VENCalculatorIconBackspace.png" width="25" height="26"/>
-    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
