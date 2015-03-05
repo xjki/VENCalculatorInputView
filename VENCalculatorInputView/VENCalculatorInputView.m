@@ -41,7 +41,7 @@
 
 - (void)setupInit {
     // Set default locale
-    self.locale = [NSLocale currentLocale];
+    self.locale = [NSLocale autoupdatingCurrentLocale];
 
     // Set customizable properties
     [self setNumberButtonBackgroundColor:[UIColor colorWithWhite:0.98828 alpha:1]];

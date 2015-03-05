@@ -30,7 +30,7 @@
 }
 
 - (void)setUpInitWithStyle:(VENCalculatorInputViewStyle)style {
-    self.locale = [NSLocale currentLocale];
+    self.locale = [NSLocale autoupdatingCurrentLocale];
     self.style = style;
 
     VENCalculatorInputView *inputView = [[VENCalculatorInputView alloc] initWithStyle:style];

@@ -10,7 +10,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.locale = [NSLocale currentLocale];
+        self.locale = [NSLocale autoupdatingCurrentLocale];
     }
     return self;
 }
@@ -39,7 +39,7 @@
         CGFloat floatExpression = [(NSNumber *)result floatValue];
         if (integerExpression == floatExpression) {
             return [(NSNumber *)result stringValue];
-        } else if (floatExpression >= CGFLOAT_MAX || fabs(floatExpression) <= CGFLOAT_MIN || isnan(floatExpression)) {
+        } else if (floatExpression >= CGFLOAT_MAX || fabs(floatExpression) <= CGFLOAT_MIN || isnan(floatExpression) || isinf(floatExpression)) {
             return @"0";
         } else {
             NSString *moneyFormattedNumber = [[self numberFormatter] stringFromNumber:@(floatExpression)];
