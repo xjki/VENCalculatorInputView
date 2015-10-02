@@ -7,7 +7,7 @@ This fork of VENCalculatorInputView 1.4 has option for alternate keyboard with e
 
 Keyboard has different layout (to avoid need for toolbar) and works on all size devices
 * Change sign button - changes sign of current result in calculator
-* Confirm buttom - evaluates expression in textfield, updates result and hides keyboard
+* Equals/Confirm button - evaluates expression in textfield, updates result and hides keyboard
 
 To use 
 ```obj-c
