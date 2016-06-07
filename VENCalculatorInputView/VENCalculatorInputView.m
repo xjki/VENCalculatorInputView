@@ -11,6 +11,11 @@
 
 @implementation VENCalculatorInputView
 
++ (NSBundle *)bundle {
+    NSBundle *bundle = [NSBundle bundleForClass:[VENCalculatorInputView class]];
+    return bundle;
+}
+
 - (instancetype)initWithStyle:(VENCalculatorInputViewStyle)style {
     switch (style) {
         case VENCalculatorInputViewStyleDefault:
@@ -24,7 +29,7 @@
 }
 
 - (instancetype)initWithNibNamed:(NSString*)nibName {
-    self = [[[NSBundle mainBundle] loadNibNamed:nibName owner:self options:nil] firstObject];
+    self = [[[VENCalculatorInputView bundle] loadNibNamed:nibName owner:self options:nil] firstObject];
     if (self) {
         [self setupInit];
     }
@@ -32,7 +37,7 @@
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
-    self = [[[NSBundle mainBundle] loadNibNamed:@"VENCalculatorInputView" owner:self options:nil] firstObject];
+    self = [[[VENCalculatorInputView bundle] loadNibNamed:@"VENCalculatorInputView" owner:self options:nil] firstObject];
     if (self) {
         [self setupInit];
     }
