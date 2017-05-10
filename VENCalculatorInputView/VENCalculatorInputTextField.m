@@ -26,6 +26,7 @@
 
 - (void)awakeFromNib {
     // style can with value from runtime attribute in Interface Builder
+    [super awakeFromNib];
     [self setUpInitWithStyle:self.style];
 }
 
