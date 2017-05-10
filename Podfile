@@ -1,4 +1,4 @@
-platform :ios, '9.0'
+platform :ios, '7.0'
 
 target 'VENCalculatorInputViewTests', :exclusive => true do
   pod 'Specta', '~> 0.2.1'
