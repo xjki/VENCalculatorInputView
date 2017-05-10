@@ -9,8 +9,8 @@ Pod::Spec.new do |s|
   s.homepage     = "https://github.com/venmo/VENCalculatorInputView"
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
   s.author       = { "Ayaka Nonaka" => "ayaka@venmo.com" }
-  s.platform     = :ios, '5.0'
-  s.ios.deployment_target = '5.0'
+  s.platform     = :ios, '9.0'
+  s.ios.deployment_target = '9.0'
   s.source       = { :git => "https://github.com/venmo/VENCalculatorInputView.git",
                      :tag => "v#{s.version}"
   }
