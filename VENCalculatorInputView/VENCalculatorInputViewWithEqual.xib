@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment version="2304" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -237,6 +238,9 @@
                                             <state key="normal" title="C">
                                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
+                                            <connections>
+                                                <action selector="userDidTapClear:" destination="1" eventType="touchUpInside" id="4AI-NN-NsF"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                 </stackView>
@@ -266,6 +270,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="backspaceButton" destination="nEm-qn-8Il" id="MKi-Rd-gjE"/>
+                <outlet property="clearButton" destination="aUb-C3-rxP" id="ufc-Sn-mL6"/>
                 <outlet property="decimalButton" destination="eYd-gM-or0" id="Lng-xU-k41"/>
                 <outletCollection property="operationButtonCollection" destination="x27-vp-6DR" id="UQW-WX-jyQ"/>
                 <outletCollection property="operationButtonCollection" destination="nS1-xf-Wd3" id="Cyu-bs-cdg"/>
@@ -285,6 +290,7 @@
                 <outletCollection property="numberButtonCollection" destination="Vjs-Bi-wiF" id="UBg-MC-fUE"/>
                 <outletCollection property="operationButtonCollection" destination="rF5-sT-WS8" id="1aQ-ch-h3L"/>
                 <outletCollection property="operationButtonCollection" destination="nEm-qn-8Il" id="rnn-aI-1lJ"/>
+                <outletCollection property="operationButtonCollection" destination="aUb-C3-rxP" id="tPI-NR-0Aj"/>
             </connections>
         </view>
     </objects>

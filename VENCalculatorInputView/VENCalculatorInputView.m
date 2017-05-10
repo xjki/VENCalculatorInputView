@@ -6,6 +6,7 @@
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *operationButtonCollection;
 @property (strong, nonatomic) IBOutlet UIButton *decimalButton;
 @property (strong, nonatomic) IBOutlet UIButton *backspaceButton;
+@property (strong, nonatomic) IBOutlet UIButton *clearButton;
 
 @end
 
@@ -130,6 +131,13 @@
     [[UIDevice currentDevice] playInputClick];
     if ([self.delegate respondsToSelector:@selector(calculatorInputViewDidTapBackspace:)]) {
         [self.delegate calculatorInputViewDidTapBackspace:self];
+    }
+}
+
+- (IBAction)userDidTapClear:(UIButton *)sender {
+    [[UIDevice currentDevice] playInputClick];
+    if ([self.delegate respondsToSelector:@selector(calculatorInputViewDidTapClear:)]) {
+        [self.delegate calculatorInputViewDidTapClear:self];
     }
 }
 

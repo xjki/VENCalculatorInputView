@@ -109,6 +109,10 @@
     [self deleteBackward];
 }
 
+- (void) calculatorInputViewDidTapClear:(VENCalculatorInputView *)calculatorInputView {
+    self.text = @"";
+}
+
 - (void)calculatorInputViewDidTapEquals:(VENCalculatorInputView *)calculatorInputView {
     [self venCalculatorTextFieldDidEndEditing];
     [self endEditing:YES];
