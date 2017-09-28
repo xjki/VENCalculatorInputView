@@ -7,6 +7,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *decimalButton;
 @property (strong, nonatomic) IBOutlet UIButton *backspaceButton;
 @property (strong, nonatomic) IBOutlet UIButton *clearButton;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomSpaceConstraint;
 
 @end
 
@@ -65,6 +66,13 @@
         [self setupButton:operationButton];
     }
     [self.backspaceButton setImage:[self backspaceImage] forState:UIControlStateNormal];
+}
+
+- (void) didMoveToWindow {
+    [super didMoveToWindow];
+    if (@available(iOS 11.0, *)) {
+        self.bottomSpaceConstraint.constant = self.window.safeAreaInsets.bottom;
+    }
 }
 
 - (UIImage *) backspaceImage {
