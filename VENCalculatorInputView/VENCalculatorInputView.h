@@ -52,8 +52,8 @@ typedef NS_ENUM(NSInteger, VENCalculatorInputViewStyle) {
 @property (strong, nonatomic) UIColor *operationButtonBorderColor;
 
 /**
- * Inits keyboard view with passed style
- * @param Style of the keyboard
+ * Inits keyboard view with selected style
+ * @param style     style of the keyboard (with or without extra buttons)
  * @return Instance or nil.
  */
 - (instancetype)initWithStyle:(VENCalculatorInputViewStyle)style;
