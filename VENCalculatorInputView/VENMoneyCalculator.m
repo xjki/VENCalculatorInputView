@@ -59,6 +59,7 @@
         [_numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
         [_numberFormatter setCurrencySymbol:@""];
         [_numberFormatter setCurrencyDecimalSeparator:[self decimalSeparator]];
+        _numberFormatter.currencyGroupingSeparator = @"";
     }
     return _numberFormatter;
 }

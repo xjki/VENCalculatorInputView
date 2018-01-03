@@ -85,6 +85,10 @@ describe(@"Handle other locale", ^{
         moneyCalculator.locale = [NSLocale localeWithLocaleIdentifier:@"fr_FR"];
     });
 
+    it(@"should remove thousand seperator", ^{
+        expect([moneyCalculator evaluateExpression:@"1025,15"]).to.equal(@"1025,15");
+    });
+
     it(@"should handle division", ^{
         expect([moneyCalculator evaluateExpression:@"2/2"]).to.equal(@"1");
         expect([moneyCalculator evaluateExpression:@"100/4"]).to.equal(@"25");
@@ -97,5 +101,21 @@ describe(@"Handle other locale", ^{
     });
 
 });
+
+
+describe(@"Handle mixed locale", ^{
+    __block VENMoneyCalculator *moneyCalculator;
+
+    beforeAll(^{
+        moneyCalculator = [VENMoneyCalculator new];
+        moneyCalculator.locale = [NSLocale localeWithLocaleIdentifier:@"en_FR"];
+    });
+
+    it(@"should remove thousand seperator", ^{
+        expect([moneyCalculator evaluateExpression:@"1025,15"]).to.equal(@"1025,15");
+    });
+
+});
+
 
 SpecEnd
