@@ -51,6 +51,10 @@ typedef NS_ENUM(NSInteger, VENCalculatorInputViewStyle) {
 @property (strong, nonatomic) UIColor *operationButtonBackgroundColor;
 @property (strong, nonatomic) UIColor *operationButtonBorderColor;
 
+@property (strong, nonatomic) UIColor *equalsButtonBackgroundColor;
+@property (strong, nonatomic) UIColor *changeSignButtonBackgroundColor;
+@property (strong, nonatomic) UIColor *decimalButtonBackgroundColor;
+
 /**
  * Inits keyboard view with selected style
  * @param style     style of the keyboard (with or without extra buttons)

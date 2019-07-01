@@ -1,12 +1,16 @@
 #import "VENCalculatorInputView.h"
+@import QuartzCore;
+
 
 @interface VENCalculatorInputView ()
 
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *numberButtonCollection;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *operationButtonCollection;
 @property (strong, nonatomic) IBOutlet UIButton *decimalButton;
+@property (strong, nonatomic) IBOutlet UIButton *changeSignButton;
 @property (strong, nonatomic) IBOutlet UIButton *backspaceButton;
 @property (strong, nonatomic) IBOutlet UIButton *clearButton;
+@property (strong, nonatomic)  IBOutlet UIButton *equalsButton;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomSpaceConstraint;
 
 @end
@@ -65,7 +69,6 @@
     for (UIButton *operationButton in self.operationButtonCollection) {
         [self setupButton:operationButton];
     }
-    [self.backspaceButton setImage:[self backspaceImage] forState:UIControlStateNormal];
 }
 
 - (void) didMoveToWindow {
@@ -75,7 +78,7 @@
     }
 }
 
-- (UIImage *) backspaceImage {
+- (UIImage *) backspaceImageWithColor:(UIColor *)color {
     // set up a graphics context of image size
     CGRect frame = CGRectMake(0, 0, 22, 15);
     UIGraphicsBeginImageContextWithOptions(CGSizeMake(frame.size.width, frame.size.height), NO, 0);
@@ -87,6 +90,7 @@
     CGContextScaleCTM(context, 1.0f, 1.0f);
 
     //// Bezier Drawing
+    [color setStroke];
     UIBezierPath* bezierPath = UIBezierPath.bezierPath;
     [bezierPath moveToPoint: CGPointMake(0.5, 7.5)];
     [bezierPath addLineToPoint: CGPointMake(7.5, 0.5)];
@@ -97,7 +101,6 @@
     [bezierPath addLineToPoint: CGPointMake(7.5, 14.5)];
     [bezierPath addLineToPoint: CGPointMake(0.5, 7.5)];
     [bezierPath closePath];
-    [UIColor.blackColor setStroke];
     bezierPath.lineWidth = 1;
     [bezierPath stroke];
     
@@ -105,16 +108,13 @@
     UIBezierPath* bezier2Path = UIBezierPath.bezierPath;
     [bezier2Path moveToPoint: CGPointMake(17.5, 3.5)];
     [bezier2Path addCurveToPoint: CGPointMake(9.5, 11.5) controlPoint1: CGPointMake(9.5, 11.5) controlPoint2: CGPointMake(9.5, 11.5)];
-    [UIColor.blackColor setStroke];
     bezier2Path.lineWidth = 1;
     [bezier2Path stroke];
-    
     
     //// Bezier 3 Drawing
     UIBezierPath* bezier3Path = UIBezierPath.bezierPath;
     [bezier3Path moveToPoint: CGPointMake(17.5, 11.5)];
     [bezier3Path addLineToPoint: CGPointMake(9.5, 3.5)];
-    [UIColor.blackColor setStroke];
     bezier3Path.lineWidth = 1;
     [bezier3Path stroke];
     
@@ -129,10 +129,13 @@
     _locale = locale;
     NSString *decimalSymbol = [locale objectForKey:NSLocaleDecimalSeparator];
     [self.decimalButton setTitle:decimalSymbol forState:UIControlStateNormal];
+    [self.decimalButton setTitle:decimalSymbol forState:UIControlStateHighlighted];
 }
 
 - (void)setupButton:(UIButton *)button {
-    button.layer.borderWidth = 0.25f;
+    CALayer *l = [button layer];
+    l.masksToBounds = YES;
+    l.borderWidth = 0.25f;
 }
 
 - (IBAction)userDidTapBackspace:(UIButton *)sender {
@@ -195,64 +198,80 @@
 
 #pragma mark - Properties
 
-- (void)setButtonTitleColor:(UIColor *)buttonTitleColor {
-    _buttonTitleColor = buttonTitleColor;
+- (void)setButtonTitleColor:(UIColor *)titleColor {
+    _buttonTitleColor = [titleColor copy];
     for (UIButton *numberButton in self.numberButtonCollection) {
-        [numberButton setTitleColor:buttonTitleColor forState:UIControlStateNormal];
+        [numberButton setTitleColor:_buttonTitleColor forState:UIControlStateNormal];
     }
     for (UIButton *operationButton in self.operationButtonCollection) {
-        [operationButton setTitleColor:buttonTitleColor forState:UIControlStateNormal];
+        [operationButton setTitleColor:_buttonTitleColor forState:UIControlStateNormal];
+    }
+    [self.backspaceButton setImage:[self backspaceImageWithColor:_buttonTitleColor] forState:UIControlStateNormal];
+}
+
+- (void)setButtonTitleFont:(UIFont *)titleFont {
+    _buttonTitleFont = [titleFont copy];
+    for (UIButton *numberButton in self.numberButtonCollection) {
+        numberButton.titleLabel.font = _buttonTitleFont;
+    }
+    for (UIButton *operationButton in self.operationButtonCollection) {
+        operationButton.titleLabel.font = _buttonTitleFont;
     }
 }
 
-- (void)setButtonTitleFont:(UIFont *)buttonTitleFont {
-    _buttonTitleFont = buttonTitleFont;
+- (void)setButtonHighlightedColor:(UIColor *)highlightedColor {
+    _buttonHighlightedColor = [highlightedColor copy];
     for (UIButton *numberButton in self.numberButtonCollection) {
-        numberButton.titleLabel.font = buttonTitleFont;
-    }
-    for (UIButton *operationButton in self.operationButtonCollection) {
-        operationButton.titleLabel.font = buttonTitleFont;
-    }
-}
-
-- (void)setButtonHighlightedColor:(UIColor *)buttonHighlightedColor {
-    _buttonHighlightedColor = buttonHighlightedColor;
-    for (UIButton *numberButton in self.numberButtonCollection) {
-        [numberButton setBackgroundImage:[self imageWithColor:buttonHighlightedColor size:CGSizeMake(50, 50)]
+        [numberButton setBackgroundImage:[self imageWithColor:_buttonHighlightedColor size:CGSizeMake(50, 50)]
                                 forState:UIControlStateHighlighted];
     }
     for (UIButton *operationButton in self.operationButtonCollection) {
-        [operationButton setBackgroundImage:[self imageWithColor:buttonHighlightedColor size:CGSizeMake(50, 50)]
+        [operationButton setBackgroundImage:[self imageWithColor:_buttonHighlightedColor size:CGSizeMake(50, 50)]
                                    forState:UIControlStateHighlighted];
     }
 }
 
-- (void)setNumberButtonBackgroundColor:(UIColor *)numberButtonBackgroundColor {
-    _numberButtonBackgroundColor = numberButtonBackgroundColor;
+- (void)setNumberButtonBackgroundColor:(UIColor *)backgroundColor {
+    _numberButtonBackgroundColor = [backgroundColor copy];
     for (UIButton *numberButton in self.numberButtonCollection) {
-        numberButton.backgroundColor = numberButtonBackgroundColor;
+        numberButton.backgroundColor = _numberButtonBackgroundColor;
     }
 }
 
-- (void)setNumberButtonBorderColor:(UIColor *)numberButtonBorderColor {
-    _numberButtonBorderColor = numberButtonBorderColor;
+- (void)setNumberButtonBorderColor:(UIColor *)borderColor {
+    _numberButtonBorderColor = [borderColor copy];
     for (UIButton *numberButton in self.numberButtonCollection) {
-        numberButton.layer.borderColor = numberButtonBorderColor.CGColor;
+        numberButton.layer.borderColor = _numberButtonBorderColor.CGColor;
     }
 }
 
-- (void)setOperationButtonBackgroundColor:(UIColor *)operationButtonBackgroundColor {
-    _operationButtonBackgroundColor = operationButtonBackgroundColor;
+- (void)setOperationButtonBackgroundColor:(UIColor *)backgroundColor {
+    _operationButtonBackgroundColor = [backgroundColor copy];
     for (UIButton *operationButton in self.operationButtonCollection) {
-        operationButton.backgroundColor = operationButtonBackgroundColor;
+        operationButton.backgroundColor = _operationButtonBackgroundColor;
     }
 }
 
-- (void)setOperationButtonBorderColor:(UIColor *)operationButtonBorderColor {
-    _operationButtonBorderColor = operationButtonBorderColor;
+- (void)setOperationButtonBorderColor:(UIColor *)borderColor {
+    _operationButtonBorderColor = [borderColor copy];
     for (UIButton *operationButton in self.operationButtonCollection) {
-        operationButton.layer.borderColor = operationButtonBorderColor.CGColor;
+        operationButton.layer.borderColor = _operationButtonBorderColor.CGColor;
     }
+}
+
+- (void)setEqualsButtonBackgroundColor:(UIColor *)backgroundColor {
+    _equalsButtonBackgroundColor = [backgroundColor copy];
+    self.equalsButton.backgroundColor = _equalsButtonBackgroundColor;
+}
+
+- (void)setDecimalButtonBackgroundColor:(UIColor *)backgroundColor {
+    _decimalButtonBackgroundColor = [backgroundColor copy];
+    self.decimalButton.backgroundColor = _decimalButtonBackgroundColor;
+}
+
+- (void)setChangeSignButtonBackgroundColor:(UIColor *)backgroundColor {
+    _changeSignButtonBackgroundColor = [backgroundColor copy];
+    self.changeSignButton.backgroundColor = _changeSignButtonBackgroundColor;
 }
 
 @end

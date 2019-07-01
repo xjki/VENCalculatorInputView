@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment version="2304" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -248,7 +248,7 @@
                                     <rect key="frame" x="0.0" y="108" width="64" height="108"/>
                                     <accessibility key="accessibilityConfiguration" label="Equals"/>
                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
-                                    <state key="normal" title="✓">
+                                    <state key="normal" title="OK">
                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                     <connections>
@@ -271,8 +271,10 @@
             <connections>
                 <outlet property="backspaceButton" destination="nEm-qn-8Il" id="MKi-Rd-gjE"/>
                 <outlet property="bottomSpaceConstraint" destination="0vV-cW-3MR" id="NFE-wl-ve9"/>
+                <outlet property="changeSignButton" destination="Vjs-Bi-wiF" id="4do-Mu-yQd"/>
                 <outlet property="clearButton" destination="aUb-C3-rxP" id="ufc-Sn-mL6"/>
                 <outlet property="decimalButton" destination="eYd-gM-or0" id="Lng-xU-k41"/>
+                <outlet property="equalsButton" destination="rF5-sT-WS8" id="aj9-k5-pg0"/>
                 <outletCollection property="operationButtonCollection" destination="x27-vp-6DR" id="UQW-WX-jyQ"/>
                 <outletCollection property="operationButtonCollection" destination="nS1-xf-Wd3" id="Cyu-bs-cdg"/>
                 <outletCollection property="operationButtonCollection" destination="xVG-Mb-OFf" id="vMh-VD-5cC"/>
