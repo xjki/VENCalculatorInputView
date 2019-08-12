@@ -16,7 +16,7 @@
 }
 
 - (NSString *)evaluateExpression:(NSString *)expressionString {
-    if (!expressionString) {
+    if (!expressionString || [expressionString isEqualToString:@""]) {
         return nil;
     }
     NSString *floatString = [NSString stringWithFormat:@"1.0*%@", expressionString];
