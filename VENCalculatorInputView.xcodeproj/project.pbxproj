@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -235,10 +235,11 @@
 				ORGANIZATIONNAME = Venmo;
 			};
 			buildConfigurationList = B6F22CF418AC031000543816 /* Build configuration list for PBXProject "VENCalculatorInputView" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 10.0";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = B6F22CF018AC031000543816;
